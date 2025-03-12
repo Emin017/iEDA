@@ -21,9 +21,7 @@ endif()
 
 message(STATUS "vcd parser rust lib path ${RUST_LIB_PATH}")
 
-ADD_EXTERNAL_PROJ(vcd)
-
-target_link_libraries(vcd ${RUST_LIB_PATH} dl)
+target_link_libraries(vcd vcd_parser dl)
 target_include_directories(vcd PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR})
 
