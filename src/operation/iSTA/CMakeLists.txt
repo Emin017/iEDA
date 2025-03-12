@@ -24,7 +24,6 @@ include_directories(${HOME_THIRDPARTY}/yaml-cpp/include)
 include(${HOME_CMAKE}/operation/idb.cmake)
 
 link_directories(${CMAKE_BINARY_DIR}/lib)
-link_directories(${HOME_THIRDPARTY}/onnxruntime/)
 
 find_package(Eigen3 REQUIRED)
 

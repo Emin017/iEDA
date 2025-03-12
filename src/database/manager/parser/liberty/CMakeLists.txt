@@ -22,9 +22,7 @@ endif()
 
 message(STATUS "liberty parser rust lib path ${RUST_LIB_PATH}")
 
-ADD_EXTERNAL_PROJ(liberty)
-
-target_link_libraries(liberty str sta-solver log ${RUST_LIB_PATH} dl)
+target_link_libraries(liberty str sta-solver log liberty_parser dl)
 
 target_include_directories(liberty PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR} 
@@ -34,5 +32,3 @@ add_executable(test_lib ${CMAKE_CURRENT_SOURCE_DIR}/lib-rust/liberty-parser/test
 target_link_libraries(test_lib liberty)
 target_include_directories(test_lib PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR})
-
-install(TARGETS test_lib DESTINATION /home/taosimin/bin/iEDA_bin)

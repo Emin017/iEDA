@@ -24,6 +24,7 @@
 
 #include "Log.hh"
 
+#include <cstddef>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -39,7 +40,7 @@ namespace ieda {
  * @param data
  * @param size
  */
-void SignalHandle(const char* data, int size)
+void SignalHandle(const char* data, std::size_t size)
 {
   std::ofstream fs("glog_dump.log", std::ios::app);
   std::string str = std::string(data, size);
