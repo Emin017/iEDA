@@ -22,9 +22,7 @@ endif()
 
 message(STATUS "spef parser rust lib path ${RUST_LIB_PATH}")
 
-ADD_EXTERNAL_PROJ(spef)
-
-target_link_libraries(spef log ${RUST_LIB_PATH} dl)
+target_link_libraries(spef log spef_parser dl)
 target_include_directories(spef PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR})
 

@@ -25,9 +25,7 @@ endif()
 
 message(STATUS "verilog parser rust lib path ${RUST_LIB_PATH}")
 
-ADD_EXTERNAL_PROJ(verilog)
-
-target_link_libraries(verilog str log ${ZLIB_LIBRARIES} ${RUST_LIB_PATH} dl) 
+target_link_libraries(verilog str log ${ZLIB_LIBRARIES} verilog_parser dl)
 
 target_include_directories(verilog
     PUBLIC
