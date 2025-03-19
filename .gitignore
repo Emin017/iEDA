@@ -1,7 +1,10 @@
 .vscode
 .VSCodeCounter/
 .idea
+.direnv/
 cmake-build-debug/
+compile_commands.json
+result
 tags
 
 
