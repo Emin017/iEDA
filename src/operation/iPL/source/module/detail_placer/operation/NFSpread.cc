@@ -291,8 +291,8 @@ void NFSpread::initBlockages()
 	for (int32_t i = 0; i < layout->get_row_num(); i++) {
 		for (auto* row : layout->get_row_2d_list().at(i)) {
 			for (DPSegment& segment : row->get_segment_list()){
-				for (DPBin& bin : segment.get_bin_list()){
-					_bin_list.push_back(&bin);
+				for (DPBin* bin : segment.get_bin_list()){
+					_bin_list.push_back(bin);
 				}
 			}
 		}

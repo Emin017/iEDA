@@ -21,6 +21,7 @@
 #include <set>
 
 #include "DPNode.hh"
+#include "DPBin.hh"  // Include the DPBin header for complete type definition
 
 namespace ipl{
 
@@ -31,7 +32,11 @@ class DPSegment{
 
 public:
 	DPSegment() = default;
-	virtual ~DPSegment() = default;
+	virtual ~DPSegment() {
+        for (DPBin* bin : _bin_list) {
+            delete bin;
+        }
+    }
 
 	void set_id(const int id) { _id = id;}
     void set_bound(const Rectangle<int64_t>& rect) { _bound = rect; }
@@ -46,10 +51,10 @@ public:
     int get_id() const {return _id;} 
     const Rectangle<int64_t>& get_bound() const { return _bound; }
     int64_t get_width() const {return _bound.get_width() ; }
-    std::vector<DPBin>& get_bin_list() {return _bin_list;}
+    std::vector<DPBin*> get_bin_list() {return _bin_list;}
     int get_num_bins() const {return _bin_list.size(); }
-    DPBin* get_front_bin() { return &_bin_list.front() ; }
-    DPBin* get_back_bin() {return &_bin_list.back();}
+    DPBin* get_front_bin() { return _bin_list.front() ; }
+    DPBin* get_back_bin() {return _bin_list.back();}
     DPSegment* get_left_segment() { return _left;}
     DPSegment* get_right_segment() {return _right;}
 
@@ -73,7 +78,7 @@ private:
     int64_t _bin_length_y;
     int64_t _node_usage = 0 ;
     DPRow* _row = nullptr;
-    std::vector<DPBin> _bin_list;
+    std::vector<DPBin*> _bin_list;
     std::set<std::string> _segment_list;
     DPSegment * _left = nullptr;
 	DPSegment * _right = nullptr;

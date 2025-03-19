@@ -37,17 +37,18 @@ void DPSegment::initBins()
 		if (right_pos - bound.get_ur_x() < bin_width)
             bound.set_upper_right(right_pos, bound.get_ur_y());
 		const int id = _bin_list.size();
-		_bin_list.push_back(DPBin());
-		DPBin & bin = _bin_list.back();
-		bin.set_id(id);
-		bin.set_bound(bound);
-		bin.set_segment(this);
+		DPBin* bin = new DPBin();
+		_bin_list.push_back(bin);
+
+		bin->set_id(id);
+		bin->set_bound(bound);
+		bin->set_segment(this);
 		bound.set_lower_left(bound.get_ur_x(), bound.get_ll_y());
 		if (left) {
-			left->set_right(&bin);
-			bin.set_left(left);
+			left->set_right(bin);
+			bin->set_left(left);
 		}  
-		left = &bin;
+		left = bin;
 		// connecting horizontal bins 
 	} while (bound.get_ur_x() + bin_width <= right_pos);    
 }
@@ -141,7 +142,7 @@ int DPSegment::getBinIndex(const int64_t pos_x, const bool round_up)
 DPBin * DPSegment::getBinByIndex(const int index) 
 {
 	if (index >= 0 && index < get_num_bins())
-		return &_bin_list[index];
+		return _bin_list[index];
 	return nullptr;
 }  
 

@@ -769,6 +769,7 @@ class IdbLayerImplant : public IdbLayer
     if (_spacing_list->get_num() == 1) {
       return _spacing_list->get_min_spacing(0)->get_min_spacing();
     }
+    return -1; // Return default value when there isn't exactly 1 spacing
   }
   IdbLayerImplantSpacingList* get_min_spacing_list() { return _spacing_list; }
   int32_t get_min_width() { return _min_width; }

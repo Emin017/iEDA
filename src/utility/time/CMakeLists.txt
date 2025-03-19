@@ -8,7 +8,7 @@ else()
   ADD_LIBRARY(time SHARED ${SRC})
 endif()
 
-TARGET_LINK_LIBRARIES(time absl::time)
+TARGET_LINK_LIBRARIES(time absl::time str)
 
 target_include_directories(time 
     PUBLIC 

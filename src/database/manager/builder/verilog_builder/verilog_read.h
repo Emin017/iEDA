@@ -55,7 +55,7 @@ class VerilogPortRefPortConnect;
 class VerilogReader;
 class RustVerilogReader;
 };  // namespace ista
-class RustVerilogModule;
+struct RustVerilogModule;
 namespace idb {
 
 using namespace ista;
