@@ -61,6 +61,9 @@
                 gnumake
                 clang-tools
                 cargo
+                hyperfine
+                inferno
+                gperftools
               ];
             };
         };
