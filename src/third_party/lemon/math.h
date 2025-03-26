@@ -27,7 +27,7 @@
 ///
 ///This file includes the standard math library (cmath).
 
-#include<cmath>
+#include <cmath>
 
 namespace lemon {
 
@@ -67,7 +67,14 @@ namespace lemon {
 
   ///Round a value to its closest integer
   inline double round(double r) {
-    return (r > 0.0) ? std::floor(r + 0.5) : std::ceil(r - 0.5);
+    double intPart = static_cast<double>(static_cast<long>(r));
+    double fraction = r - intPart;
+
+    if (r >= 0.0) {
+      return (fraction >= 0.5) ? intPart + 1.0 : intPart;
+    } else {
+      return (fraction <= -0.5) ? intPart - 1.0 : intPart;
+    }
   }
 
   /// @}

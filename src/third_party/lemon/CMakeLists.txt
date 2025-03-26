@@ -6,6 +6,8 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/lemon.pc.in
                ${CMAKE_CURRENT_BINARY_DIR}/lemon.pc @ONLY)
 
+set(CMAKE_CXX_STANDARD 20)
+
 set(LEMON_SOURCES
     arg_parser.cc
     base.cc

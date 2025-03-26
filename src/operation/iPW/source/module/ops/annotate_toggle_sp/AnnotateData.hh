@@ -45,17 +45,20 @@ namespace ipower {
 class AnnotateTime {
  public:
   AnnotateTime(int64_t t0, int64_t t1, int64_t tx, int64_t tz)
-      : _T0(t0), _T1(t1), _TX(tx), _TZ(tz) {}
+      : _T0(static_cast<long>(t0)),
+        _T1(static_cast<long>(t1)),
+        _TX(static_cast<long>(tx)),
+        _TZ(static_cast<long>(tz)) {}
   AnnotateTime() = default;
   ~AnnotateTime() = default;
   auto& get_T0() { return _T0; }
-  void incrT0(int64_t duration) { _T0 += duration; }
+  void incrT0(int64_t duration) { _T0 += static_cast<long>(duration); }
   auto& get_T1() { return _T1; }
-  void incrT1(int64_t duration) { _T1 += duration; }
+  void incrT1(int64_t duration) { _T1 += static_cast<long>(duration); }
   auto& get_TX() { return _TX; }
-  void incrTX(int64_t duration) { _TX += duration; }
+  void incrTX(int64_t duration) { _TX += static_cast<long>(duration); }
   auto& get_TZ() { return _TZ; }
-  void incrTZ(int64_t duration) { _TZ += duration; }
+  void incrTZ(int64_t duration) { _TZ += static_cast<long>(duration); }
 
   void printAnnotateTime(std::ostream& out);
   double get_SP() {
@@ -81,7 +84,7 @@ class AnnotateToggle {
 
   void printAnnotateToggle(std::ostream& out);
   int64_t get_toggle() { return _TC.get_ui(); }
-  void set_TC(int tc) { _TC = tc; }
+  void set_TC(int tc) { _TC = static_cast<long>(tc); }
 
  private:
   mpz_class _TC{0};  //!< The total number of transition.
@@ -241,7 +244,7 @@ class AnnotateInstance {
 class AnnotateTimeScale {
  public:
   void set_annotate_time_scale(int64_t scale, int8_t unit_num) {
-    _scale = scale;
+    _scale = static_cast<long>(scale);
     _unit = (ScaleUnit)unit_num;
   };
 
@@ -271,12 +274,12 @@ class AnnotateDB {
   auto* get_top_instance() { return _top_instance.get(); }
 
   void set_simulation_start_time(int64_t simulation_start_time) {
-    _simulation_start_time = simulation_start_time;
+    _simulation_start_time = static_cast<long>(simulation_start_time);
   }
   auto get_simulation_sart_time() { return _simulation_start_time.get_ui(); }
 
   void set_simulation_duration(int64_t simulation_duration) {
-    _simulation_duration = simulation_duration;
+    _simulation_duration = static_cast<long>(simulation_duration);
   }
   auto get_simulation_duration() { return _simulation_duration.get_ui(); }
 

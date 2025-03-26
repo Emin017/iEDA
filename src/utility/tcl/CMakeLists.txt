@@ -19,9 +19,16 @@ else()
   add_library(tcl SHARED ${SRC})
 endif()
 
-target_link_libraries(tcl PUBLIC ${LINK_tcl} absl::inlined_vector)
+target_link_libraries(tcl
+  PUBLIC
+  ${LINK_tcl}
+  absl::inlined_vector
+  str
+  glog
+  gflags
+)
 
 target_include_directories(tcl
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )

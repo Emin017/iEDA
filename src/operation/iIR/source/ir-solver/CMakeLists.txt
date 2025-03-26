@@ -17,4 +17,4 @@ else()
     target_compile_options(ir_solver PRIVATE -fPIC)
 endif()
 
-
+target_link_libraries(ir_solver PRIVATE glog)
