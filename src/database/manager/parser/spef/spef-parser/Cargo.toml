@@ -27,3 +27,8 @@ anyhow = "1.0"
 
 [profile.dev]
 debug = true
+
+[profile.release]
+incremental = true
+debug = true
+lto = "fat"

@@ -21,3 +21,8 @@ threadpool = "1.8.1"
 #[features]
 #default = ["multithreading"]
 #multithreading = []
+
+[profile.release]
+incremental = true
+debug = true
+lto = "fat"
