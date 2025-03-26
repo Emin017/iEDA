@@ -15,5 +15,11 @@ lib.makeScope newScope (
     spef-parser = rustpkgs.spef-parser;
     vcd-parser = rustpkgs.vcd_parser;
     verilog-parser = rustpkgs.verilog-parser;
+
+    perf-run-iTO = scope.writeShellScriptBin "perf-run-iTO" ''
+      cp nix/tests/perf-iEDA.sh scripts/design/sky130_gcd/
+      cd scripts/design/sky130_gcd/ && ./run_iEDA.sh
+      ./perf-iEDA.sh
+    '';
   }
 )

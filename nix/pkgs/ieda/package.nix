@@ -53,6 +53,7 @@ stdenv.mkDerivation {
     (lib.cmakeBool "CMD_BUILD" true)
     (lib.cmakeBool "SANITIZER" false)
     (lib.cmakeBool "BUILD_STATIC_LIB" true)
+    (lib.cmakeBool "USE_PROFILER" true)
   ];
 
   preConfigure = ''
