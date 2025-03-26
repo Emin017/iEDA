@@ -43,6 +43,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -Werror=return-type")
 set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O2 -Wall -g2 -ggdb -Werror=return-type")
 # set(CMAKE_BUILD_TYPE "Release")
 
+if(BUILD_PERF)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lprofiler")
+endif()
 
 if(NOT DEFINED CMD_BUILD)
     set(SANITIZER OFF)
