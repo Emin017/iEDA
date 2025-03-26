@@ -47,6 +47,8 @@ stdenv.mkDerivation {
     tcl
   ];
 
+  cmakeBuildType = "Release";
+
   cmakeFlags = [
     (lib.cmakeBool "CMD_BUILD" true)
     (lib.cmakeBool "SANITIZER" false)
