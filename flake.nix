@@ -55,7 +55,7 @@
           devShells.default =
             with pkgs;
             mkShell {
-              inputsFrom = [ config.packages ];
+              inputsFrom = [ config.packages.ieda ];
               nativeBuildInputs = [
                 cmake
                 gnumake

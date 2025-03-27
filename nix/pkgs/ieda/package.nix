@@ -34,7 +34,10 @@ stdenv.mkDerivation {
     toSource {
       root = ./../../..;
       fileset = unions [
-        ./../../..
+        ./../../../src
+        ./../../../cmake
+        ./../../../scripts
+        ./../../../CMakeLists.txt
       ];
     };
 
