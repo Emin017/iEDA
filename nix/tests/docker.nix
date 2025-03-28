@@ -12,6 +12,7 @@
   dockerTools,
   ieda,
   gperf2flamegraph,
+  convertGperf,
   flamegraph,
 }:
 let
@@ -35,6 +36,7 @@ let
       ieda
       gperf2flamegraph
       flamegraph
+      convertGperf
     ];
 
     enableFakechroot = true;

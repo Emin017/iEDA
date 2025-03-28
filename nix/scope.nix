@@ -18,10 +18,17 @@ lib.makeScope newScope (
 
     gperf2flamegraph = scope.callPackage ./tests/gperf2flamegraph.nix { };
     perf-docker = scope.callPackage ./tests/docker.nix { };
-    perf-run-iTO = scope.writeShellScriptBin "perf-run-iTO" ''
-      cp nix/tests/perf-iEDA.sh scripts/design/sky130_gcd/
-      cd scripts/design/sky130_gcd/ && ./run_iEDA.sh
-      ./perf-iEDA.sh
+
+    convertGperf = scope.writeShellScriptBin "perf2flamegraph" ''
+      #!/usr/bin/env bash
+        set -e
+        local executable=$1
+        local gperf_file=$2
+        local output_name=$3
+        ${scope.gperf2flamegraph}/bin/gperf2flamegraph \
+          --svg-output $output_name.svg \
+          --text-output $output_name.png \
+          $executable $gperf_file
     '';
   }
 )
