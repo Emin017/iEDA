@@ -24,6 +24,7 @@
   vcd-parser,
   verilog-parser,
   liberty-parser,
+  gperftools,
 }:
 stdenv.mkDerivation {
   pname = "ieda";
@@ -82,6 +83,7 @@ stdenv.mkDerivation {
     gmp
     tcl
     zlib
+    gperftools
   ];
 
   postInstall = ''
