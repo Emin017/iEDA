@@ -33,8 +33,3 @@ log = "0.4"
 # Config build option
 [profile.dev]
 debug = true
-
-[profile.release]
-incremental = true
-debug = true
-lto = "fat"
