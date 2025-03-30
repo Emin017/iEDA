@@ -82,7 +82,7 @@ inline void* RustVecIterator<void>::next()
 template <typename T>
 inline T* GetRustVecElem(RustVec* rust_vec, uintptr_t index)
 {
-  uintptr_t ptr_move = std::is_same_v<T, void> ? index * rust_vec->type_size : index;
+  uintptr_t ptr_move = index;
   auto* ret_value = static_cast<T*>(rust_vec->data) + ptr_move;
   return ret_value;
 }
