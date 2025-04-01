@@ -30,6 +30,17 @@
           ...
         }:
         {
+          _module.args.pkgs =
+            let
+              overlay = import ./nix/overlay.nix;
+            in
+            import inputs.nixpkgs {
+              inherit system;
+              overlays = [
+                overlay
+              ];
+              # config = { };
+            };
           treefmt = {
             projectRootFile = "flake.nix";
             programs = {
@@ -38,34 +49,43 @@
             };
             flakeCheck = true;
           };
-          packages =
-            let
-              scope = pkgs.callPackage ./nix/scope.nix { };
-            in
-            {
-              default = scope.ieda;
-              inherit (scope)
-                ieda
-                iedaClang
-                iir-rust
-                liberty-parser
-                spef-parser
-                ;
-            };
-          devShells.default =
-            with pkgs;
-            mkShell {
-              inputsFrom = [ config.packages.ieda ];
-              nativeBuildInputs = [
-                cmake
-                gnumake
-                clang-tools
-                cargo
-                hyperfine
-                inferno
-                gperftools
+          packages = {
+            default = pkgs.ieda;
+            inherit (pkgs)
+              ieda
+              iedaClang
+              perfDocker
+              gperf2flamegraph
+              perfEnv
+              perfBundle
+              rustpkgs-all
+              ;
+          };
+          devShells = {
+            default =
+              with pkgs;
+              mkShell {
+                inputsFrom = [ config.packages.ieda ];
+                buildInputs = [
+                  cmake
+                  gnumake
+                  clang-tools
+                  cargo
+                  hyperfine
+                  inferno
+                  gperftools
+                ];
+              };
+            rtl2gds = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                uv
+                yosys
               ];
+              shellHook = ''
+                export PYTHONPATH=`pwd`/RTL2GDS/src
+              '';
             };
+          };
         };
     };
 }
