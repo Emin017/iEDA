@@ -19,25 +19,27 @@ let
       gperftools
     ];
     nativeBuildInputs = with pkgs; [
+      neovim
       cmake
       ninja
       flex
       bison
       tcl
+      python3
     ];
   };
   closure = pkgs.closureInfo {
     rootPaths = [ shell.drvPath ];
   };
 in
-pkgs.runCommand "env"
+pkgs.runCommand "nix-env-wrapper"
   {
-    pname = "env";
-    meta.mainProgram = "env";
+    pname = "nix-env-wrapper";
+    meta.mainProgram = "nix-env-wrapper";
   }
   ''
     mkdir -p $out/bin
-    cat > $out/bin/env <<EOF
+    cat > $out/bin/nix-env-wrapper <<EOF
     #!${pkgs.runtimeShell}
     export PATH=$PATH:${
       pkgs.lib.makeBinPath (
@@ -52,5 +54,5 @@ pkgs.runCommand "env"
     exec nix-shell --option substituters "" ${shell.drvPath}
     EOF
 
-    chmod +x $out/bin/env
+    chmod +x $out/bin/nix-env-wrapper
   ''
