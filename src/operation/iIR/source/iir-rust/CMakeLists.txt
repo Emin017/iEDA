@@ -24,6 +24,4 @@ endif()
 
 message(STATUS "iIR rust lib path ${RUST_LIB_PATH}")
 
-ADD_EXTERNAL_PROJ(iir)
-
-target_link_libraries(iIR-Rust PRIVATE ${RUST_LIB_PATH} dl)
+target_link_libraries(iIR-Rust PRIVATE iir dl)
