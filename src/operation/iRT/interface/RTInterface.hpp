@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "../../../database/interaction/RT_DRC/ids.hpp"
+#include "../../../database/data/design/IdbEnum.h"
 
 #if 1  // 前向声明
 
@@ -31,8 +32,6 @@ class IdbLayerRouting;
 class IdbLayerCut;
 class IdbNet;
 class IdbPin;
-enum class IdbLayerDirection : uint8_t;
-enum class IdbConnectType : uint8_t;
 class IdbRegularWireSegment;
 }  // namespace idb
 
