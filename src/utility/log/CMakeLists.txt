@@ -18,4 +18,6 @@ else()
   ADD_LIBRARY(log SHARED ${SRC})
 endif()
 
-TARGET_LINK_LIBRARIES(log PUBLIC ${LINK_glog} ${LINK_gflags} ${LINK_unwind})
+find_package (glog 0.6.0 REQUIRED)
+find_package (gflags REQUIRED)
+target_link_libraries(log PUBLIC ${LINK_glog} ${LINK_gflags} ${LINK_unwind})
