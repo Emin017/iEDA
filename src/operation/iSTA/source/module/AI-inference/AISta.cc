@@ -180,7 +180,7 @@ Ort::Value AICalibratePathDelay::createInputTensor(
  * @param input_tensor
  */
 std::vector<Ort::Value> AICalibratePathDelay::infer(Ort::Value& input_tensor) {
-  Ort::Env env(ORT_LOGGING_LEVEL_WARNING, "AISta");
+  static Ort::Env env(ORT_LOGGING_LEVEL_WARNING, "AISta");
   Ort::SessionOptions session_options;
   std::string model_path = _model_to_path[_model_type];
   Ort::Session session(env, model_path.c_str(), session_options);
